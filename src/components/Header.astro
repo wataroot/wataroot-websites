@@ -1,0 +1,70 @@
+---
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "About me", href: "/about" },
+  { name: "Collections", href: "/projects" },
+];
+---
+
+<header>
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between relative">
+    
+    <!-- 左側スペース (中央配置のバランス用) -->
+    <div class="w-10"></div>
+
+    <!-- 中央：名前 (ロゴ) -->
+    <a href="/" class="text-xl font-bold tracking-tight text-teal-400 hover:opacity-80 transition-opacity">
+      <slot />
+    </a>
+
+    <!-- 右側：ハンバーガーボタン -->
+    <button
+      id="menu-toggle"
+      aria-label="Toggle menu"
+      class="w-10 h-10 flex items-center justify-end text-slate-300 hover:text-teal-400 focus:outline-none "
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="icon-open" class="block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- ドロップダウンメニュー -->
+    <nav
+      id="mobile-menu"
+      class="hidden absolute top-16 right-6 w-56 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl p-4 flex-col gap-2"
+    >
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="block px-4 py-2.5 text-slate-300 hover:text-teal-400 hover:bg-slate-700/50 rounded-lg text-sm font-medium transition-colors"
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  toggleBtn?.addEventListener('click', () => {
+    const isHidden = menu?.classList.contains('hidden');
+    if (isHidden) {
+      menu?.classList.remove('hidden');
+      menu?.classList.add('flex');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+    } else {
+      menu?.classList.add('hidden');
+      menu?.classList.remove('flex');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    }
+  });
+</script>

@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = [
+  {
+    title: "ECサイトプラットフォーム",
+    description: "AstroとStripeを組み合わせた超高速なJamstack ECストアフロント。",
+    tags: ["Astro", "Tailwind CSS", "TypeScript"],
+  },
+  {
+    title: "タスク管理ダッシュボード",
+    description: "リアルタイムデータ同期とドラッグ＆ドロップ機能を備えたWebアプリ。",
+    tags: ["React", "Next.js", "Prisma"],
+  },
+  {
+    title: "技術ブログメディア",
+    description: "Markdownで投稿できる静的サイト生成ブログ。",
+    tags: ["Astro", "MDX", "Tailwind CSS"],
+  }
+];
+---
+
+<Layout title="Collections | わたのね">
+  <Header />
+  <main class="pt-32 pb-20 px-6 max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-slate-100 border-b border-slate-800 pb-4 mb-8">
+      Projects
+    </h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((p) => (
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-100 mb-2">{p.title}</h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">{p.description}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {p.tags.map((tag) => (
+              <span class="text-xs font-mono bg-teal-950 text-teal-300 px-2.5 py-1 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+  <Footer />
+</Layout>
