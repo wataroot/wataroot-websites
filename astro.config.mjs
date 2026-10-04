@@ -3,8 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wataroot.github.io',
-  base: '/wataroot-websites',
+  site: 'https://wataroot.net',
   vite: {
     plugins: [tailwindcss()]
   }
